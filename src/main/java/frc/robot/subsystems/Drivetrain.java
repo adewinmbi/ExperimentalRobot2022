@@ -28,11 +28,6 @@ public class Drivetrain extends SubsystemBase {
     public DoubleSolenoid driveShifter; // Channels 0 and 6
     public DoubleSolenoid climberShifter; // Channels 7 and 6
     public DoubleSolenoid hookShifter; // Channels 2 and 5
-
-
-    // private double modLeftInput;
-    // private double modRightInput;
-    // private boolean highGear;
     
     // ======================= TELEOP FUNCTIONS ======================= //
     
@@ -88,14 +83,6 @@ public class Drivetrain extends SubsystemBase {
       SmartDashboard.putNumber(" Right Slave Current ", rightSlave.getSupplyCurrent());
       SmartDashboard.putNumber(" Left Master Current ", leftMaster.getSupplyCurrent());
       SmartDashboard.putNumber(" Left Slave Current ", leftSlave.getSupplyCurrent());
-      
-      // SmartDashboard.putBoolean(" Compressor Enabled ", compressor.enabled());
-      // SmartDashboard.putBoolean(" Pressure Switch ", compressor.getPressureSwitchValue());
-      // SmartDashboard.putNumber(" Compressor Current ", compressor.getCurrent());
-
-      // SmartDashboard.putNumber( " Left Axis ", robotContainer.OI.ps4Controller.getLeftY());
-      // SmartDashboard.putNumber( " Right Axis ", robotContainer.OI.ps4Controller.getRightY());
-      // SmartDashboard.putNumber( " Modified Left Axis", leftmod)
     }
 
     // ====================== AUTONOMOUS FUNCTIONS ====================== //

@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.climber.Arm;
 import frc.robot.subsystems.climber.Elevator;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.RobotContainer;
@@ -53,15 +52,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() { 
-    
-    
     robotContainer.reportToSmartDashboard();
     robotContainer.drivetrain.rightMaster.setNeutralMode(NeutralMode.Coast);
     robotContainer.drivetrain.rightSlave.setNeutralMode(NeutralMode.Coast);
     robotContainer.drivetrain.leftMaster.setNeutralMode(NeutralMode.Coast);
     robotContainer.drivetrain.leftSlave.setNeutralMode(NeutralMode.Coast);
     robotContainer.configureButtonBindings();
-    
   }
 
 
@@ -72,14 +68,11 @@ public class Robot extends TimedRobot {
     if (command != null) {
       command.schedule();
     }
-    
-    Arm.arm.setSelectedSensorPosition(0);
   }
 
   @Override
   public void autonomousPeriodic() {
     // Arm.rotateArmToAngle(64, 5);
-    SmartDashboard.putNumber(" Arm Position ", Arm.arm.getSelectedSensorPosition());
     CommandScheduler.getInstance().run();
 
 

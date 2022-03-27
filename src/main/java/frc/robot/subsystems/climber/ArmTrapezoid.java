@@ -16,12 +16,6 @@ public class ArmTrapezoid {
     public TalonSRX arm;
     
     public ArmTrapezoid() {
-        // super(
-        //     new TrapezoidProfile.Constraints(
-        //         ClimberConstants.kArmMaxVelocity,
-        //         ClimberConstants.kArmMaxAcceleration)
-        // );
-
         arm = new TalonSRX(ClimberConstants.kArmTalonID);
         arm.setInverted(true);
         arm.configMotionAcceleration(ClimberConstants.kArmMotionAcceleration);
@@ -31,16 +25,6 @@ public class ArmTrapezoid {
         arm.config_kD(0, ClimberConstants.kArmkD);
         arm.config_kF(0, ClimberConstants.kArmkF);
     }
-
-
-    // public void setPositionMotionMagic(double angle) {
-    //     if (Math.abs(arm.getSelectedSensorVelocity()) <= ClimberConstants.kArmStaticFrictionDeadband) {
-    //         getFFIfNotMoving(angle - getAngle());
-    //     }
-    //     else {
-    //         arm.set(ControlMode.MotionMagic, angleToTicks(angle), DemandType.ArbitraryFeedForward, getFFIfMoving());
-    //     }
-    // }
 
     public void setPositionMotionMagic(double ticks) {
         arm.set(ControlMode.MotionMagic, ticks, 
