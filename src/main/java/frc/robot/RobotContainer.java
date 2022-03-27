@@ -22,6 +22,7 @@ import frc.robot.subsystems.climber.Elevator;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.EverybotConstants;
+import frc.robot.commands.TankDrive;
 
 public class RobotContainer {
 
@@ -54,6 +55,9 @@ public class RobotContainer {
         ps4Controller = new PS4Controller(0);
         ps4Controller2 = new PS4Controller(1);
         //drivetrain.compressor.enableDigital();
+
+        TankDrive tankDrive = new TankDrive(drivetrain, ps4Controller::getLeftY, ps4Controller::getRightY);
+        drivetrain.setDefaultCommand(tankDrive);
     }
 
     // test if this works.
@@ -170,21 +174,7 @@ public class RobotContainer {
                 SmartDashboard.putBoolean("Climbing onto low rung", true);
                 SmartDashboard.putString(" Button State ", " PS1 Cross ");
             }
-        }
-
-        // TELEOP DRIVE
-        double leftInput = ps4Controller.getLeftY();
-        double rightInput = ps4Controller.getRightY();
-        double prevLeftOutput = drivetrain.leftMaster.getMotorOutputPercent();
-        double prevRightOutput = drivetrain.rightMaster.getMotorOutputPercent();
-
-        // Low pass filter, output = (alpha * intended value) + (1-alpha) * previous value
-        double leftOutput = (DriveConstants.kDriveAlpha * leftInput) + (DriveConstants.kDriveOneMinusAlpha * prevLeftOutput);
-        double rightOutput = (DriveConstants.kDriveAlpha * rightInput) + (DriveConstants.kDriveOneMinusAlpha * prevRightOutput);
-
-        drivetrain.rightMaster.set(ControlMode.PercentOutput, rightOutput);
-        drivetrain.leftMaster.set(ControlMode.PercentOutput, leftOutput);
-        
+        }        
     }
 
     
