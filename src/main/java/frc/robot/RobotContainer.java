@@ -20,7 +20,6 @@ import frc.robot.subsystems.EverybotClimber;
 import frc.robot.subsystems.climber.ArmTrapezoid;
 import frc.robot.subsystems.climber.Elevator;
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.EverybotConstants;
 import frc.robot.commands.TankDrive;
 
@@ -65,21 +64,6 @@ public class RobotContainer {
     public void configureButtonBindings() {
         // Assign instantcommands to each PS4 button
         if (climberChooser.getSelected() == Climber.TRAVERSAL) {
-            if (ps4Controller2.getL1ButtonPressed()) {
-                armTrapezoid.setPositionMotionMagic(ClimberConstants.kTicksToRungAngle);
-                SmartDashboard.putString(" Button State ", "L1");
-            }
-    
-            if (ps4Controller2.getL2ButtonPressed()) {
-                armTrapezoid.setPositionMotionMagic(ClimberConstants.kTicksToClearRung);
-                SmartDashboard.putString(" Button State ", "L2");
-            }
-    
-            if (ps4Controller2.getR1ButtonPressed()) {
-                armTrapezoid.setPositionMotionMagic(ClimberConstants.kTicksToVertical);
-                SmartDashboard.putString(" Button State ", "R1");
-            }
-    
             if (ps4Controller2.getR2ButtonPressed()) {
                 elevator.elevator.setNeutralMode(NeutralMode.Brake);
                 SmartDashboard.putString(" Button State ", "R2 ");
@@ -238,6 +222,10 @@ public class RobotContainer {
         
         SmartDashboard.putData(" Elevator Brake Mode ", new InstantCommand(() ->
             elevator.elevator.setNeutralMode(NeutralMode.Brake)));
+        
+        if (climberChooser.getSelected() == Climber.TRAVERSAL) {
+            armTrapezoid.configureControllerBindings(ps4Controller2);
+        }
             
     }
 
