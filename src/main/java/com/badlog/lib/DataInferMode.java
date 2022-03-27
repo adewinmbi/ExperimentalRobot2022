@@ -1,4 +1,4 @@
-package frc.robot.badlog.lib;
+package com.badlog.lib;
 
 public enum DataInferMode {
 	DEFAULT,

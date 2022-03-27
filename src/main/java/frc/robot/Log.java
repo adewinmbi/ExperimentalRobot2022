@@ -10,7 +10,7 @@ package frc.robot;
 import java.io.File;
 import java.util.function.Supplier;
 
-import badlog.lib.BadLog;
+import com.badlog.lib.BadLog;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;

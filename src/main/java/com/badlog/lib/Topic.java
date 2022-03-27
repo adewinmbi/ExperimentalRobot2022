@@ -1,4 +1,4 @@
-package frc.robot.badlog.lib;
+package com.badlog.lib;
 
 abstract class Topic extends NamespaceObject {
 	public abstract String getUnit();

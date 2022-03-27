@@ -1,4 +1,4 @@
-package frc.robot.badlog.lib;
+package com.badlog.lib;
 
 class Value extends NamespaceObject {
 	String name;
