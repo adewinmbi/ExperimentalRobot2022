@@ -14,11 +14,12 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.DriveConstants;
 
-public class ArmTrapezoid {
+public class ArmTrapezoid extends SubsystemBase {
 
     public TalonSRX arm;
     
@@ -75,6 +76,7 @@ public class ArmTrapezoid {
         SmartDashboard.putNumber(" Climber Position ", arm.getSelectedSensorPosition());
         SmartDashboard.putNumber(" Climber Voltage ", arm.getMotorOutputVoltage());
         SmartDashboard.putNumber(" Climber Voltage ", arm.getSupplyCurrent());
+        SmartDashboard.putNumber(" Climber Angle Conversion ", ticksToAngle());
     }
 
     public double FF() {
@@ -98,5 +100,15 @@ public class ArmTrapezoid {
     public void toggleClimberArmHook() {
         climberShifted = !climberShifted;
         climberShifter.set(climberShifted ? Value.kReverse : Value.kForward);
+    }
+
+    /** Shift the climber hooks */
+    public void enableClimberHooks() {
+        hookShifter.set(Value.kForward);
+    }
+
+    /** Unshift the climber hooks */
+    public void disableClimberHooks() {
+        hookShifter.set(Value.kReverse);
     }
 }

@@ -21,6 +21,7 @@ import frc.robot.subsystems.climber.ArmTrapezoid;
 import frc.robot.subsystems.climber.Elevator;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.EverybotConstants;
+import frc.robot.commands.MoveArmTrapezoid;
 import frc.robot.commands.TankDrive;
 
 public class RobotContainer {
@@ -57,6 +58,9 @@ public class RobotContainer {
 
         TankDrive tankDrive = new TankDrive(drivetrain, ps4Controller::getLeftY, ps4Controller::getRightY);
         drivetrain.setDefaultCommand(tankDrive);
+
+        MoveArmTrapezoid moveArm = new MoveArmTrapezoid(ps4Controller2::getRightY, ps4Controller2::getLeftY, armTrapezoid);
+        armTrapezoid.setDefaultCommand(moveArm);
     }
 
     // test if this works.
@@ -136,13 +140,6 @@ public class RobotContainer {
                 SmartDashboard.putString(" Button State ", "Cr");
                 SmartDashboard.putBoolean(" Climber Piston Forward ", m_climberShifter);
             }
-
-                if (ps4Controller2.getLeftY() > ClimberConstants.kOperatorDeadband) {
-                drivetrain.hookShifter.set(Value.kForward);
-                } else if (ps4Controller2.getLeftY() < ClimberConstants.kOperatorDeadband) {
-                drivetrain.hookShifter.set(Value.kReverse);
-                }
-
         } 
         
         else if (climberChooser.getSelected() == Climber.LOW) {
@@ -226,16 +223,11 @@ public class RobotContainer {
         if (climberChooser.getSelected() == Climber.TRAVERSAL) {
             armTrapezoid.configureControllerBindings(ps4Controller2);
         }
-            
     }
 
     public void reportToSmartDashboard() {
-
+        armTrapezoid.reportToSmartDashboard();
         SmartDashboard.putNumber(" Climber Position", everybotClimber.climberMaster.getSelectedSensorPosition());
-        SmartDashboard.putNumber(" Arm Position ", armTrapezoid.arm.getSelectedSensorPosition());
-        SmartDashboard.putNumber(" Arm Velocity ", armTrapezoid.arm.getSelectedSensorVelocity());
-        SmartDashboard.putNumber(" Arm Voltage ", armTrapezoid.arm.getMotorOutputVoltage());
-        SmartDashboard.putNumber(" Arm Angle Conversion ", armTrapezoid.ticksToAngle());
         SmartDashboard.putNumber(" Elevator Position ", elevator.elevator.getSelectedSensorPosition());
         SmartDashboard.putNumber(" Elevator Voltage ", elevator.elevator.getMotorOutputVoltage());
         // SmartDashboard.putBoolean(" Triangle Button Held ", ps4Controller2.getTriangleButton());
