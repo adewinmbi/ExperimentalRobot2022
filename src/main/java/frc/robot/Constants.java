@@ -15,9 +15,6 @@ public final class Constants {
 
         public static final int kHooksMasterTalonID = 20; //new
         public static final int kHooksSlaveTalonID = 27; //new
-        
-        // public static final int kEverybotArm = 15;
-        // public static final int kEverybotIntake = 14;
 
         public static final int kDriveShifterForwardID = 0;
         public static final int kDriveShifterReverseID = 7;
